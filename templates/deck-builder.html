@@ -1,4 +1,30 @@
 {% extends "layout.html" %}
 {% block contents %}
-s
+    <div class="container">
+        <div class="col-md-8">
+            <div class="row">
+                <div id="Filter">
+                    {% include "/deck/filter.html" %}
+                </div>
+            </div>
+            <div class="row">
+                <div id="Card-table">
+                    {% include "/deck/card_table.html" %}
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="row">
+                <div id="Mana">
+                    {% include "/deck/mana_graph.html" %}
+                </div>
+            </div>
+            <div class="row">
+                <div id="Deck">
+                    {% include "/deck/chosen_deck.html" %}
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock contents %}
