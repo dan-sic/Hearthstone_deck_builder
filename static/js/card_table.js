@@ -1,5 +1,6 @@
 var pageNumber = 0;
 var maxPage;
+const state = {};
 
 function download(){
   return fetch('https://api.hearthstonejson.com/v1/30103/enUS/cards.collectible.json')
@@ -19,16 +20,22 @@ function changePage(event){
     main();
 }
 
-async function main(){
-    let cards = await download();
+function selectCard(e) {
+    const cardId = e.target.dataset.cardid;
+    cardData = state.cards.filter(card => card.id === cardId);
+    console.log(cardData[0]);
+}
 
-    cards = cards.filter(function(card) {
+async function main(){
+    state.cards = await download();
+
+    state.cards = state.cards.filter(function(card) {
         let div = document.getElementById('cardClass');
         let cardClass = div.getAttribute('data-name').toUpperCase();
         return card.cardClass == cardClass;
     });
 
-    cards.sort(function (a, b) {
+    state.cards.sort(function (a, b) {
         if (a.cost < b.cost){
             return -1;
         }
@@ -38,7 +45,7 @@ async function main(){
         return 0;
     });
 
-    maxPage = Math.floor(cards.length / 6);
+    maxPage = Math.floor(state.cards.length / 6);
 
     let display = '';
 
@@ -46,12 +53,22 @@ async function main(){
     let page = document.getElementById('page');
 
     for(let i=0;i<6;i++){
-        display += cards[i + pageNumber * 6].name;
-        display += `<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cards[i + pageNumber * 6].id}.png'>`;
+        const cardId = state.cards[i + pageNumber * 6].id;
+        card = `
+            <div>
+                <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>
+            </div>
+        `
+        display += card;
     }
 
     cardList.innerHTML = display;
     page.innerHTML = pageNumber;
+
+    cardList.addEventListener('click', selectCard)
+
+
+
 
 }
 
