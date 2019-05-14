@@ -1,8 +1,8 @@
-var pageNumber = 36;
+var pageNumber = 0;
 var maxPage;
 
 function download(){
-  return fetch('https://api.hearthstonejson.com/v1/30103/enUS/cards.json')
+  return fetch('https://api.hearthstonejson.com/v1/30103/enUS/cards.collectible.json')
   .then(function(response) {
     return response.json();
   });
