@@ -1,6 +1,4 @@
-var pageNumber = [0,0];
-var maxPage;
-var subSet = document.getElementById('class').name;
+
 const state = {};
 
 function download(){
@@ -14,17 +12,17 @@ function changePage(event){
     let button = event.target.id;
 
     let set;
-    if (subSet == "neutral"){
+    if (state.subSet == "neutral"){
         set = 1;
     }else{
         set = 0;
     }
 
-    if (button == "previous" && pageNumber[set]>0){
-        pageNumber[set] -= 1;
+    if (button == "previous" && state.pageNumber[set]>0){
+        state.pageNumber[set] -= 1;
     }
-    if (button == "next" && pageNumber[set] < maxPage-1){
-        pageNumber[set] += 1;
+    if (button == "next" && state.pageNumber[set] < state.maxPage-1){
+        state.pageNumber[set] += 1;
     }
     display();
 }
@@ -36,13 +34,13 @@ function selectCard(e) {
 }
 
 function selectSubSet(e){
-    subSet = e.target.name;
+    state.subSet = e.target.name;
     display();
 }
 
 function display(){
     cards = state.cards.filter(function(card) {
-        return card.cardClass == subSet.toUpperCase();
+        return card.cardClass == state.subSet.toUpperCase();
     });
 
     cards.sort(function (a, b) {
@@ -56,7 +54,7 @@ function display(){
     });
 
     let set;
-    if (subSet == "neutral"){
+    if (state.subSet == "neutral"){
         set = 1;
     }else{
         set = 0;
@@ -64,7 +62,7 @@ function display(){
 
     let display = '';
     for(let i=0;i<6;i++){
-        const cardId = cards[i + pageNumber[set] * 6].id;
+        const cardId = cards[i + state.pageNumber[set] * 6].id;
         card = `
             <div>
                 <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>
@@ -77,13 +75,17 @@ function display(){
     let page = document.getElementById('page');
     let mPage = document.getElementById('maxPage');
 
+    state.maxPage = Math.floor(cards.length / 6);
+
     cardList.innerHTML = display;
-    page.innerHTML = pageNumber[set];
-    mPage.innerHTML = Math.floor(cards.length / 6);
+    page.innerHTML = state.pageNumber[set];
+    mPage.innerHTML = state.maxPage;
 }
 
 async function main(){
     state.cards = await download();
+    state.pageNumber = [0,0];
+    state.subSet = document.getElementById('class').name;
 
     let cardList = document.getElementById('cards');
     let tab1 = document.getElementById('class');
