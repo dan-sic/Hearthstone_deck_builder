@@ -1,4 +1,22 @@
-{% extends "layout.html" %}
-{% block contents %}
-
-{% endblock contents %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hearthstone</title>
+</head>
+<body>
+    <h1>Hearthstone</h1>
+    <a href="{{ url_for('route_deck_builder', class="druid") }}">Druid</a>
+    <a href="{{ url_for('route_deck_builder', class="hunter") }}">Hunter</a>
+    <a href="{{ url_for('route_deck_builder', class="mage") }}">Mage</a>
+    <a href="{{ url_for('route_deck_builder', class="paladin") }}">Paladin</a>
+    <a href="{{ url_for('route_deck_builder', class="priest") }}">Priest</a>
+    <a href="{{ url_for('route_deck_builder', class="rogue") }}">Rogue</a>
+    <a href="{{ url_for('route_deck_builder', class="shaman") }}">Shaman</a>
+    <a href="{{ url_for('route_deck_builder', class="warlock") }}">Warlock</a>
+    <a href="{{ url_for('route_deck_builder', class="warrior") }}">Warrior</a>
+</body>
+</html>

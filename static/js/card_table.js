@@ -23,7 +23,19 @@ async function main(){
     let cards = await download();
 
     cards = cards.filter(function(card) {
-       return ( card.type == "MINION" || card.type == "SPELL" ) && card.cardClass == "MAGE";
+        let div = document.getElementById('cardClass');
+        let cardClass = div.getAttribute('data-name').toUpperCase();
+        return card.cardClass == cardClass;
+    });
+
+    cards.sort(function (a, b) {
+        if (a.cost < b.cost){
+            return -1;
+        }
+        if (a.cost > b.cost){
+            return 1;
+        }
+        return 0;
     });
 
     maxPage = Math.floor(cards.length / 6);

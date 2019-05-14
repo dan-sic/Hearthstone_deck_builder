@@ -3,8 +3,8 @@
 {% endblock head %}
 
 {% block contents %}
+    <div id="cardClass" data-name="{{ cardClass }}">{{ cardClass }}</div>
     <div id="cards"></div>
-
     <br>
     <button id="previous" name="previous" onclick="changePage(event)">Previous</button>
     <br>

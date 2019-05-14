@@ -1,5 +1,6 @@
 venv
-server/__pycache__/
 
 
 .idea
+
+server/__pycache__/
