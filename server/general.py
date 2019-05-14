@@ -4,8 +4,8 @@ from flask import render_template, redirect
 
 @app.route("/")
 def route_index():
-    # return "This is main page"
-    return redirect('/deck-builder')
+
+    return render_template('index.html')
 
 
 @app.route("/deck-builder")
