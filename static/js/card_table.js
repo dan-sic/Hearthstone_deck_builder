@@ -1,5 +1,6 @@
-var pageNumber = 0;
+var pageNumber = [0,0];
 var maxPage;
+var subSet = document.getElementById('class').name;
 const state = {};
 
 function download(){
@@ -11,13 +12,21 @@ function download(){
 
 function changePage(event){
     let button = event.target.id;
-    if (button == "previous" && pageNumber>0){
-        pageNumber--;
+
+    let set;
+    if (subSet == "neutral"){
+        set = 1;
+    }else{
+        set = 0;
     }
-    if (button == "next" && pageNumber < maxPage-1){
-        pageNumber++;
+
+    if (button == "previous" && pageNumber[set]>0){
+        pageNumber[set] -= 1;
     }
-    main();
+    if (button == "next" && pageNumber[set] < maxPage-1){
+        pageNumber[set] += 1;
+    }
+    display();
 }
 
 function selectCard(e) {
@@ -26,16 +35,17 @@ function selectCard(e) {
     console.log(cardData[0]);
 }
 
-async function main(){
-    state.cards = await download();
+function selectSubSet(e){
+    subSet = e.target.name;
+    display();
+}
 
-    state.cards = state.cards.filter(function(card) {
-        let div = document.getElementById('cardClass');
-        let cardClass = div.getAttribute('data-name').toUpperCase();
-        return card.cardClass == cardClass;
+function display(){
+    cards = state.cards.filter(function(card) {
+        return card.cardClass == subSet.toUpperCase();
     });
 
-    state.cards.sort(function (a, b) {
+    cards.sort(function (a, b) {
         if (a.cost < b.cost){
             return -1;
         }
@@ -45,15 +55,16 @@ async function main(){
         return 0;
     });
 
-    maxPage = Math.floor(state.cards.length / 6);
+    let set;
+    if (subSet == "neutral"){
+        set = 1;
+    }else{
+        set = 0;
+    }
 
     let display = '';
-
-    let cardList = document.getElementById('cards');
-    let page = document.getElementById('page');
-
     for(let i=0;i<6;i++){
-        const cardId = state.cards[i + pageNumber * 6].id;
+        const cardId = cards[i + pageNumber[set] * 6].id;
         card = `
             <div>
                 <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>
@@ -62,14 +73,27 @@ async function main(){
         display += card;
     }
 
+    let cardList = document.getElementById('cards');
+    let page = document.getElementById('page');
+    let mPage = document.getElementById('maxPage');
+
     cardList.innerHTML = display;
-    page.innerHTML = pageNumber;
+    page.innerHTML = pageNumber[set];
+    mPage.innerHTML = Math.floor(cards.length / 6);
+}
 
-    cardList.addEventListener('click', selectCard)
+async function main(){
+    state.cards = await download();
 
+    let cardList = document.getElementById('cards');
+    let tab1 = document.getElementById('class');
+    let tab2 = document.getElementById('neutral');
 
+    cardList.addEventListener('click', selectCard);
+    tab1.addEventListener('click', selectSubSet);
+    tab2.addEventListener('click', selectSubSet);
 
-
+    display();
 }
 
 main();
