@@ -82,9 +82,9 @@ function manipulateDom(cards){
     for(let i=0;i<cardsPerPage;i++){
         const cardId = cards[i + state.pageNumber[set] * 6].id;
         card = `
-            <div>
-                <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>
-            </div>
+            <div class="col-md-4 col-sm-6">
+                <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+           </div>
         `
         display += card;
     }
