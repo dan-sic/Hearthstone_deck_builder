@@ -1,5 +1,9 @@
+import DeckModel from './DeckModel.js';
+import { updateChartView } from './chartView.js';
+import { displayCurrentDeck } from './deckView.js';
 
 const state = {};
+let deckData;
 
 function download(){
   return fetch('https://api.hearthstonejson.com/v1/30103/enUS/cards.collectible.json')
@@ -27,10 +31,23 @@ function changePage(event){
     printCards();
 }
 
-function selectCard(e) {
+function selectCardHandler(e) {
+    e.preventDefault();
+
     const cardId = e.target.dataset.cardid;
-    cardData = state.cards.filter(card => card.id === cardId);
-    console.log(cardData[0]);
+
+    const isRightMouseClick = e.type === 'contextmenu';
+    if(isRightMouseClick) {
+        deckData.removeCardFromDeck(cardId);
+    } else {
+        deckData.addCardToDeck(cardId);
+    }
+
+    const chartValues = deckData.deckManaChart;
+    updateChartView(chartValues);
+    displayCurrentDeck(deckData.deck);
+
+    return false
 }
 
 function selectSubSet(e){
@@ -79,13 +96,11 @@ function manipulateDom(cards){
         cardsPerPage = cards.length;
     }
     let display = '';
+
     for(let i=0;i<cardsPerPage;i++){
         const cardId = cards[i + state.pageNumber[set] * 6].id;
-        card = `
-            <div>
-                <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>
-            </div>
-        `
+        const card = `<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>`;
+
         display += card;
     }
 
@@ -95,6 +110,9 @@ function manipulateDom(cards){
 
     state.maxPage = Math.floor(cards.length / 6);
 
+    cardList.addEventListener('click', selectCardHandler)
+    cardList.addEventListener('contextmenu', selectCardHandler, false)
+
     cardList.innerHTML = display;
     page.innerHTML = state.pageNumber[set];
     mPage.innerHTML = state.maxPage;
@@ -102,16 +120,19 @@ function manipulateDom(cards){
 
 async function main(){
     state.cards = await download();
+    deckData = new DeckModel(state.cards);
     state.pageNumber = [0,0];
     state.subSet = document.getElementById('class').name;
 
-    let cardList = document.getElementById('cards');
     let tab1 = document.getElementById('class');
     let tab2 = document.getElementById('neutral');
+    let nextBtn = document.getElementById('next');
+    let previousBtn = document.getElementById('previous');
 
-    cardList.addEventListener('click', selectCard);
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
+    nextBtn.addEventListener('click', changePage);
+    previousBtn.addEventListener('click', changePage);
 
     printCards();
 }
