@@ -1,5 +1,6 @@
 import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
+import { displayCurrentDeck } from './deckView.js';
 
 const state = {};
 let deckData;
@@ -44,6 +45,7 @@ function selectCardHandler(e) {
 
     const chartValues = deckData.deckManaChart;
     updateChartView(chartValues);
+    displayCurrentDeck(deckData.deck);
 
     return false
 }

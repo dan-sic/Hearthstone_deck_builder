@@ -21,6 +21,6 @@ export const updateChartView = manaChartData => {
         }
 
         const barLabelNumberOfCards = bar.previousElementSibling;
-        barLabelNumber.textContent = barLabelNumberOfCards;
+        barLabelNumberOfCards.textContent = numberOfCardsWithCurrentManaCost;
     });
 }

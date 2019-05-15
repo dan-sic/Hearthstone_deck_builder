@@ -66,11 +66,17 @@
 
         /*  ============================ DECK TABLE =========================*/
 
-.deck {
-    background-color: wheat;
-    border-collapse: collapse;
+.deck-wrapper {
     width: 450px;
-    margin: 50px auto 50px;
+    margin: 50px 0 0 50px;
+    min-height: 500px;
+    background-color: wheat;
+}
+
+.deck {
+    background-color: burlywood;
+    border-collapse: collapse;
+    width: 100%;
 }
 
 .deck th, .deck td {
@@ -91,12 +97,6 @@
     width: 20%;
 }
 
-
-
-.deck__body {
-
-}
-
 .deck__mana-icon {
     display: inline-block;
     width: 16px;
@@ -106,22 +106,22 @@
     background-position: -20px -31px;
 }
 
-.deck__card-name--legendary {
+.deck__card-name--LEGENDARY {
     color: orange;
     font-weight: bold;
 }
 
-.deck__card-name--common {
+.deck__card-name--COMMON {
     color: grey;
     font-weight: bold;
 }
 
-.deck__card-name--rare {
+.deck__card-name--RARE {
     color: blue;
     font-weight: bold;
 }
 
-.deck__card-name--epic {
+.deck__card-name--EPIC {
     color: blueviolet;
     font-weight: bold;
 }
