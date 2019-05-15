@@ -1,5 +1,5 @@
 from server import app
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 
 
 @app.route("/")
@@ -9,4 +9,5 @@ def route_index():
 
 @app.route("/deck-builder")
 def route_deck_builder():
-    return render_template("deck-builder.html")
+    card_class = request.args.get('class')
+    return render_template("deck-builder.html", cardClass=card_class)

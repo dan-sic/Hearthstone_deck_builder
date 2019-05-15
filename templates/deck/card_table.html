@@ -1,0 +1,20 @@
+{% block head %}
+    <script src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
+{% endblock head %}
+
+{% block contents %}
+
+    <button id="class" name="{{ cardClass }}">{{ cardClass }}</button><br>
+    <button id="neutral" name="neutral">Neutral</button><br>
+
+    <div id="cardClass" data-name="{{ cardClass }}">{{ cardClass }}</div>
+    <div id="cards"></div>
+    <br>
+    <button id="previous" name="previous" onclick="changePage(event)">Previous</button>
+    <br>
+    <button id="next" name="next" onclick="changePage(event)">Next</button>
+
+    <div id="page"></div>
+    <div id="maxPage"></div>
+
+{% endblock contents %}
