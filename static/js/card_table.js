@@ -43,15 +43,47 @@ function printCards(){
     manipulateDom(cards);
 }
 
+function checkBoxChange(event){
+    let checkBox = event.target;
+    let mechanic = checkBox.id.toUpperCase();
+    if(checkBox.checked){
+        state.mechanics.push(mechanic);
+    }else{
+        let i = state.mechanics.indexOf(mechanic);
+        state.mechanics.splice(i,1);
+    }
+    printCards();
+}
+
 function filterCards(){
     cards = state.cards.filter(function(card) {
         return card.cardClass == state.subSet.toUpperCase();
     });
 
-    let filterField = document.getElementById('filter');
+    let textField = document.getElementById('filter');
     cards = cards.filter(function(card) {
-        return card.name.toUpperCase().indexOf(filterField.value.toUpperCase()) > -1;
+        return card.name.toUpperCase().indexOf(textField.value.toUpperCase()) > -1;
 
+    });
+
+    let selectField = document.getElementById('select');
+    cards = cards.filter(function(card) {
+        if(selectField.value == "default") return true;
+        if(selectField.value == "even") return card.cost%2==0;
+        if(selectField.value == "odd") return card.cost%2==1;
+        return card.cost==selectField.value;
+    });
+    cards = cards.filter(function(card) {
+        if (state.mechanics.length>0){
+            return state.mechanics.some(function (v) {
+                if(card.mechanics)
+                    return card.mechanics.indexOf(v) >= 0;
+                if(card.referencedTags)
+                    return card.referencedTags.indexOf(v) >= 0;
+                return false;
+            });
+        }
+        return true;
     });
 
     cards.sort(function (a, b) {
@@ -103,6 +135,7 @@ function manipulateDom(cards){
 async function main(){
     state.cards = await download();
     state.pageNumber = [0,0];
+    state.mechanics = [];
     state.subSet = document.getElementById('class').name;
 
     let cardList = document.getElementById('cards');

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/static/css" rel="stylesheet" type="text/css">
+    <link href="/static/css/style.css" rel="stylesheet" type="text/css">
     <script src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
+    <script src="{{ url_for('static', filename='js/filter.js') }}" defer></script>
 </head>
 <body>
     {% block contents %}{% endblock contents %}
