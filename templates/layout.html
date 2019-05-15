@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link href="/static/css" rel="stylesheet" type="text/css">
-    <script src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
+
+
 </head>
 <body>
     {% block contents %}{% endblock contents %}
+    <script src="{{ url_for('static', filename='js/card_table.js') }}" ></script>
+    <script src="{{ url_for('static', filename='js/javascript.js') }}" ></script>
 </body>
 </html>
