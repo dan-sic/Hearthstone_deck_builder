@@ -1,9 +1,7 @@
-import ChartModel from './ChartModel.js';
 import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
 
 const state = {};
-const chartData = new ChartModel();
 let deckData;
 
 function download(){
@@ -36,20 +34,16 @@ function selectCardHandler(e) {
     e.preventDefault();
 
     const cardId = e.target.dataset.cardid;
-    const cardData = state.cards.filter(card => card.id === cardId);
-    const manaValue = cardData[0].cost;
 
     const isRightMouseClick = e.type === 'contextmenu';
     if(isRightMouseClick) {
-        chartData.removeMana(manaValue);
         deckData.removeCardFromDeck(cardId);
     } else {
-        chartData.addMana(manaValue);
         deckData.addCardToDeck(cardId);
     }
 
-    const chartVlues = chartData.getChartValues();
-    updateChartView(chartVlues);
+    const chartValues = deckData.deckManaChart;
+    updateChartView(chartValues);
 
     return false
 }
@@ -126,7 +120,3 @@ async function main(){
 }
 
 main();
-
-// window.addEventListener('DOMContentLoaded', () => {
-//      chartData = new ChartModel();
-// });

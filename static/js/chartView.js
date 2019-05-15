@@ -1,24 +1,26 @@
-export const updateChartView = chartData => {
+export const updateChartView = manaChartData => {
     const manaBars = document.querySelectorAll('.mana-graph__fill');
 
-    let maxManaValue = 0;
+    let highestNumberOfCardsWithSameManaCost = 0;
 
-        for (let [key, value] of Object.entries(chartData)) {
-            if(value > maxManaValue) {
-                maxManaValue = value;
+        for (let [manaCost, numberOfCards] of Object.entries(manaChartData)) {
+            if(numberOfCards > highestNumberOfCardsWithSameManaCost) {
+                highestNumberOfCardsWithSameManaCost = numberOfCards;
             }
         }
 
     manaBars.forEach(bar => {
-        const barManaName = bar.dataset.mana_bar;
-        const percentageManaFill = Math.floor(chartData[barManaName] / maxManaValue * 100);
+        const manaCost = bar.dataset.mana_bar;
+        const numberOfCardsWithCurrentManaCost = manaChartData[manaCost];
+        const percentageManaFill = Math.floor(numberOfCardsWithCurrentManaCost / highestNumberOfCardsWithSameManaCost * 100);
+
         if(isNaN(percentageManaFill)) {
             bar.style.height = `0%`;
         } else {
             bar.style.height = `${percentageManaFill}%`;
         }
 
-        const cardsNumber = bar.previousElementSibling;
-        cardsNumber.textContent = chartData[barManaName]
+        const barLabelNumberOfCards = bar.previousElementSibling;
+        barLabelNumber.textContent = barLabelNumberOfCards;
     });
 }
