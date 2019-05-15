@@ -24,7 +24,7 @@ function changePage(event){
     if (button == "next" && state.pageNumber[set] < state.maxPage-1){
         state.pageNumber[set] += 1;
     }
-    display();
+    printCards();
 }
 
 function selectCard(e) {
@@ -35,12 +35,23 @@ function selectCard(e) {
 
 function selectSubSet(e){
     state.subSet = e.target.name;
-    display();
+    printCards();
 }
 
-function display(){
+function printCards(){
+    cards = filterCards();
+    manipulateDom(cards);
+}
+
+function filterCards(){
     cards = state.cards.filter(function(card) {
         return card.cardClass == state.subSet.toUpperCase();
+    });
+
+    let filterField = document.getElementById('filter');
+    cards = cards.filter(function(card) {
+        return card.name.toUpperCase().indexOf(filterField.value.toUpperCase()) > -1;
+
     });
 
     cards.sort(function (a, b) {
@@ -52,7 +63,10 @@ function display(){
         }
         return 0;
     });
+    return cards;
+}
 
+function manipulateDom(cards){
     let set;
     if (state.subSet == "neutral"){
         set = 1;
@@ -60,8 +74,12 @@ function display(){
         set = 0;
     }
 
+    let cardsPerPage = 6;
+    if (cards.length < 6){
+        cardsPerPage = cards.length;
+    }
     let display = '';
-    for(let i=0;i<6;i++){
+    for(let i=0;i<cardsPerPage;i++){
         const cardId = cards[i + state.pageNumber[set] * 6].id;
         card = `
             <div>
@@ -95,7 +113,7 @@ async function main(){
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
 
-    display();
+    printCards();
 }
 
 main();
