@@ -1,8 +1,10 @@
 import ChartModel from './ChartModel.js';
+import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
 
 const state = {};
-let chartData;
+const chartData = new ChartModel();
+let deckData;
 
 function download(){
   return fetch('https://api.hearthstonejson.com/v1/30103/enUS/cards.collectible.json')
@@ -37,11 +39,13 @@ function selectCardHandler(e) {
     const cardData = state.cards.filter(card => card.id === cardId);
     const manaValue = cardData[0].cost;
 
-    const isRightMouseCLisk = e.type === 'contextmenu';
-    if(isRightMouseCLisk) {
+    const isRightMouseClick = e.type === 'contextmenu';
+    if(isRightMouseClick) {
         chartData.removeMana(manaValue);
+        deckData.removeCardFromDeck(cardId);
     } else {
         chartData.addMana(manaValue);
+        deckData.addCardToDeck(cardId);
     }
 
     const chartVlues = chartData.getChartValues();
@@ -102,6 +106,7 @@ function display(){
 
 async function main(){
     state.cards = await download();
+    deckData = new DeckModel(state.cards);
     state.pageNumber = [0,0];
     state.subSet = document.getElementById('class').name;
 
@@ -122,6 +127,6 @@ async function main(){
 
 main();
 
-window.addEventListener('DOMContentLoaded', () => {
-     chartData = new ChartModel();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//      chartData = new ChartModel();
+// });
