@@ -4,6 +4,9 @@
         box-sizing: border-box;
     }
 
+
+    /*  ============================ MANA GRAPH =========================*/
+
     .mana-graph {
         width: 450px;
         height: 300px;
@@ -59,3 +62,66 @@
     .mana-graph__gems {
         width: 100%;
     }
+
+
+        /*  ============================ DECK TABLE =========================*/
+
+.deck {
+    background-color: wheat;
+    border-collapse: collapse;
+    width: 450px;
+    margin: 50px auto 50px;
+}
+
+.deck th, .deck td {
+    border: 1px solid grey;
+    padding: 8px;
+}
+
+.deck th {
+    background-color: #212529;
+    padding: 14px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.deck__mana-cost {
+    text-align: center;
+    width: 20%;
+}
+
+
+
+.deck__body {
+
+}
+
+.deck__mana-icon {
+    display: inline-block;
+    width: 16px;
+    height: 15px;
+    background-image: url("../images/small-mana-icon-sprite.png");
+    background-repeat: no-repeat;
+    background-position: -20px -31px;
+}
+
+.deck__card-name--legendary {
+    color: orange;
+    font-weight: bold;
+}
+
+.deck__card-name--common {
+    color: grey;
+    font-weight: bold;
+}
+
+.deck__card-name--rare {
+    color: blue;
+    font-weight: bold;
+}
+
+.deck__card-name--epic {
+    color: blueviolet;
+    font-weight: bold;
+}

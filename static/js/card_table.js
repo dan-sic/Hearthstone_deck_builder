@@ -104,13 +104,11 @@ async function main(){
     state.pageNumber = [0,0];
     state.subSet = document.getElementById('class').name;
 
-    // let cardList = document.getElementById('cards');
     let tab1 = document.getElementById('class');
     let tab2 = document.getElementById('neutral');
     let nextBtn = document.getElementById('next');
     let previousBtn = document.getElementById('previous');
 
-    // cardList.addEventListener('click', selectCard);
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
     nextBtn.addEventListener('click', changePage);
