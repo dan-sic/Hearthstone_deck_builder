@@ -2,4 +2,35 @@
 
     <input type="text" id="filter" placeholder="Search">
 
+    <select id="select" name="select">
+        <option value="default" selected="selected">Mana filter</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="7">7</option>
+        <option value="8">8+</option>
+        <option value="even">Even</option>
+        <option value="odd">Odd</option>
+    </select>
+
+    <form>
+      <div class="multiselect">
+        <div class="selectBox" onclick="showCheckboxes()">
+          <select>
+            <option>Select an option</option>
+          </select>
+          <div class="overSelect"></div>
+        </div>
+        <div id="checkboxes">
+          <label for="one">
+            <input type="checkbox" id="charge"/>Charge</label>
+          <label for="two">
+            <input type="checkbox" id="freeze"/>Freeze</label>
+        </div>
+      </div>
+    </form>
+
 {% endblock contents %}

@@ -25,7 +25,7 @@ function changePage(event){
     if (button == "previous" && state.pageNumber[set]>0){
         state.pageNumber[set] -= 1;
     }
-    if (button == "next" && state.pageNumber[set] < state.maxPage-1){
+    if (button == "next" && state.pageNumber[set] < state.maxPage){
         state.pageNumber[set] += 1;
     }
     printCards();
@@ -60,15 +60,47 @@ function printCards(){
     manipulateDom(cards);
 }
 
+function checkBoxChange(event){
+    let checkBox = event.target;
+    let mechanic = checkBox.id.toUpperCase();
+    if(checkBox.checked){
+        state.mechanics.push(mechanic);
+    }else{
+        let i = state.mechanics.indexOf(mechanic);
+        state.mechanics.splice(i,1);
+    }
+    printCards();
+}
+
 function filterCards(){
     let cards = state.cards.filter(function(card) {
         return card.cardClass == state.subSet.toUpperCase();
     });
 
-    let filterField = document.getElementById('filter');
+    let textField = document.getElementById('filter');
     cards = cards.filter(function(card) {
-        return card.name.toUpperCase().indexOf(filterField.value.toUpperCase()) > -1;
+        return card.name.toUpperCase().indexOf(textField.value.toUpperCase()) > -1;
 
+    });
+
+    let selectField = document.getElementById('select');
+    cards = cards.filter(function(card) {
+        if(selectField.value == "default") return true;
+        if(selectField.value == "even") return card.cost%2==0;
+        if(selectField.value == "odd") return card.cost%2==1;
+        return card.cost==selectField.value;
+    });
+    cards = cards.filter(function(card) {
+        if (state.mechanics.length>0){
+            return state.mechanics.some(function (v) {
+                if(card.mechanics)
+                    return card.mechanics.indexOf(v) >= 0;
+                if(card.referencedTags)
+                    return card.referencedTags.indexOf(v) >= 0;
+                return false;
+            });
+        }
+        return true;
     });
 
     cards.sort(function (a, b) {
@@ -97,13 +129,22 @@ function manipulateDom(cards){
     }
     let display = '';
 
-    for(let i=0;i<cardsPerPage;i++){
-        const cardId = cards[i + state.pageNumber[set] * 6].id;
-        const card = `
-            <div class="col-md-4 col-sm-6">
-                <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
-           </div>
-        `
+    for(let i=0;i<6;i++){
+        let card;
+        if(i<cardsPerPage) {
+            const cardId = cards[i + state.pageNumber[set] * 6].id;
+            card = `
+                <div class="col-md-4 col-sm-6">
+                    <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+               </div>
+            `;
+        }else{
+            card = `
+                <div class="col-md-4 col-sm-6">
+                    <img src='/static/images/Card_reverse.png' data-cardid="None">
+                </div>
+            `;
+        }
         display += card;
     }
 
@@ -111,7 +152,7 @@ function manipulateDom(cards){
     let page = document.getElementById('page');
     let mPage = document.getElementById('maxPage');
 
-    state.maxPage = Math.floor(cards.length / 6);
+    state.maxPage = Math.floor(cards.length / 6)-1;
 
     cardList.addEventListener('click', selectCardHandler)
     cardList.addEventListener('contextmenu', selectCardHandler, false)
@@ -125,6 +166,7 @@ async function main(){
     state.cards = await download();
     deckData = new DeckModel(state.cards);
     state.pageNumber = [0,0];
+    state.mechanics = [];
     state.subSet = document.getElementById('class').name;
 
     let tab1 = document.getElementById('class');
@@ -132,12 +174,18 @@ async function main(){
     let nextBtn = document.getElementById('next');
     let previousBtn = document.getElementById('previous');
     let filter = document.getElementById('filter');
+    let select = document.getElementById('select');
+    let checkboxes = document.getElementById('checkboxes');
+
 
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
+
     nextBtn.addEventListener('click', changePage);
     previousBtn.addEventListener('click', changePage);
     filter.addEventListener('keyup', printCards);
+    select.addEventListener('change', printCards);
+    checkboxes.addEventListener('click', checkBoxChange);
 
     printCards();
 }
