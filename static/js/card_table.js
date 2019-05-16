@@ -139,14 +139,12 @@ function manipulateDom(cards){
                     <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
                </div>
             `;
-        }else{
-            card = `
-                <div class="col-md-4 col-sm-6">
-                    <img src='/static/images/Card_reverse.png' data-cardid="None">
-                </div>
-            `;
+            console.log(card);
         }
-        display += card;
+        if (card) {
+            display += card;
+        }
+
     }
 
     let cardList = document.getElementById('cards');
