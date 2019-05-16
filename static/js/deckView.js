@@ -25,7 +25,7 @@ function generateCardRow(cardData) {
     return cardRowHtml
 }
 
-function show(){
+export const showCardSnippet = () => {
     const target = event.target;
     const id = target.getAttribute('data-card-id');
     if(id) {
@@ -42,11 +42,7 @@ function show(){
     }
 }
 
-function hide(){
+export const hideCardSnippet = () => {
     const btn = document.getElementById('card');
 	btn.style.display = "none";
 }
-
-let deck__body = document.getElementById('deck__body');
-deck__body.addEventListener('mouseover', show);
-deck__body.addEventListener('mouseleave', hide);

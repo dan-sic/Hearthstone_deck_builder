@@ -1,6 +1,6 @@
 import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
-import { displayCurrentDeck } from './deckView.js';
+import { displayCurrentDeck, showCardSnippet, hideCardSnippet } from './deckView.js';
 
 const state = {};
 let deckData;
@@ -66,10 +66,14 @@ function removeCardFromDeck(e) {
         const cardId = selectedCard.dataset.cardId;
         deckData.removeCardFromDeck(cardId);
         const chartValues = deckData.deckManaChart;
+
         updateChartView(chartValues);
+
         displayCurrentDeck(deckData.deck);
 
         displayDeckInfo();
+
+        hideCardSnippet();
     }
 }
 
@@ -221,6 +225,7 @@ async function main(){
     let select = document.getElementById('select');
     let checkboxes = document.getElementById('checkboxes');
     let deckBody = document.querySelector('[data-js="deck__body"]');
+    let deck__body = document.getElementById('deck__body');
 
     loadMechanicsFilter(checkboxes);
 
@@ -232,7 +237,9 @@ async function main(){
     filter.addEventListener('keyup', printCards);
     select.addEventListener('change', printCards);
     checkboxes.addEventListener('click', checkBoxChange);
-    deckBody.addEventListener('click', removeCardFromDeck)
+    deckBody.addEventListener('click', removeCardFromDeck);
+    deck__body.addEventListener('mouseover', showCardSnippet);
+    deck__body.addEventListener('mouseleave', hideCardSnippet);
 
     displayDeckInfo();
     printCards();
