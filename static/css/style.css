@@ -156,6 +156,9 @@ body {
 
 .container-deck-info {
     height: 110px;
+    width: 415px;
+    margin-left: -15px;
+    background-color: wheat;
 }
 
 

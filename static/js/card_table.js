@@ -29,7 +29,7 @@ function changePage(event){
 
 function displayDeckInfo() {
     const cardNumberElement = document.getElementById('cards-number');
-    const numberOfCardsInDeck = deckData.deck.length;
+    const numberOfCardsInDeck = deckData.deck.reduce((total, card) => total + card.occurance, 0);
     cardNumberElement.textContent = numberOfCardsInDeck;
 }
 
