@@ -1,6 +1,7 @@
 body {
     background-image: url("https://images2.alphacoders.com/159/159670.jpg");
     background-color: black;
+    position: relative;
 }
 
 .class-icon {
@@ -197,6 +198,7 @@ body {
 
         /*  ============================ DECK TABLE =========================*/
 
+
 .deck-wrapper {
     width: 450px;
     margin-top: 20px;
@@ -263,6 +265,17 @@ html {
 .deck__card-name--EPIC {
     color: blueviolet;
     font-weight: bold;
+}
+
+.cardHover {
+    display: none;
+    position: absolute;
+    overflow: visible;
+    height: 0px;
+    width: 0px;
+    top: 0;
+    left: 0;
+    z-index:1;
 }
 
         /*  ============================ FILTER MECHANICS =========================*/
