@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <link href="{{ url_for('static', filename="css/style.css") }}" rel="stylesheet" type="text/css">
     <script type='module' src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
     <script src="{{ url_for('static', filename='js/filter.js') }}" defer></script>
     <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 </head>
 <body>
 <header>
@@ -16,6 +18,10 @@
 </header>
 <main>
     {% block contents %}{% endblock contents %}
+{#<<<<<<< HEAD#}
+{#    <script src="{{ url_for('static', filename='js/card_table.js') }}" ></script>#}
+{#    <script src="{{ url_for('static', filename='js/javascript.js') }}" ></script>#}
+{#=======#}
 </main>
 
 </body>

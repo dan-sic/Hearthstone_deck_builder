@@ -132,7 +132,6 @@ function manipulateDom(cards){
                     <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
                </div>
             `;
-            console.log(card);
         }
         if (card) {
             display += card;
