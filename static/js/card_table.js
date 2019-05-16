@@ -13,7 +13,8 @@ function download(){
 }
 
 function changePage(event){
-    let button = event.target.id;
+    const selectedBtn = event.target.closest('[data-js="page-btn"]');
+    let button = selectedBtn.id;
 
     let set = state.subSet == "neutral" ? 1: 0;
 
@@ -131,14 +132,12 @@ function manipulateDom(cards){
                     <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
                </div>
             `;
-        }else{
-            card = `
-                <div class="col-md-4 col-sm-6">
-                    <img src='/static/images/Card_reverse.png' data-cardid="None">
-                </div>
-            `;
+            console.log(card);
         }
-        display += card;
+        if (card) {
+            display += card;
+        }
+
     }
 
     let cardList = document.getElementById('cards');
@@ -212,6 +211,8 @@ async function main(){
     let filter = document.getElementById('filter');
     let select = document.getElementById('select');
     let checkboxes = document.getElementById('checkboxes');
+    // let prevBtn = document.getElementById('previous');
+    // let nextBtn = document.getElementById('next');
 
     loadMechanicsFilter(checkboxes);
 
