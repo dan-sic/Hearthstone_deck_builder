@@ -27,6 +27,12 @@ function changePage(event){
     printCards();
 }
 
+function displayDeckInfo() {
+    const cardNumberElement = document.getElementById('cards-number');
+    const numberOfCardsInDeck = deckData.deck.length;
+    cardNumberElement.textContent = numberOfCardsInDeck;
+}
+
 function selectCardHandler(e) {
     e.preventDefault();
 
@@ -47,6 +53,9 @@ function selectCardHandler(e) {
     const chartValues = deckData.deckManaChart;
     updateChartView(chartValues);
     displayCurrentDeck(deckData.deck);
+
+    displayDeckInfo();
+
 
     return false
 }
@@ -159,6 +168,8 @@ function manipulateDom(cards){
     cardList.innerHTML = display;
     page.innerHTML = state.pageNumber[set];
     mPage.innerHTML = state.maxPage;
+
+
 }
 
 function loadMechanicsFilter(checkboxes){
@@ -209,6 +220,7 @@ async function main(){
     select.addEventListener('change', printCards);
     checkboxes.addEventListener('click', checkBoxChange);
 
+    displayDeckInfo();
     printCards();
 }
 
