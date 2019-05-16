@@ -16,14 +16,20 @@ export default class DeckModel {
             5: 0,
             6: 0,
             7: 0,
-        }
+        };
 
         for (let card of this.deck) {
             const cardManaCost = card.cost;
             const cardOccuresOneTimeInDeck = card.occurance === 1;
             const manaCountToIncrease = cardOccuresOneTimeInDeck ? 1 : 2;
 
-            initialManaChart[cardManaCost] += manaCountToIncrease;
+            //if mana cost is higher than 7, add card to position 7
+            const isManaCostHigherThan7 = Boolean(!initialManaChart.hasOwnProperty(cardManaCost));
+            if (isManaCostHigherThan7) {
+                initialManaChart['7'] += manaCountToIncrease;
+            } else {
+                initialManaChart[cardManaCost] += manaCountToIncrease;
+            }
         }
         this.deckManaChart = {...initialManaChart}
     }
@@ -54,8 +60,6 @@ export default class DeckModel {
             this.cardsInDeckNum += 1;
             this.updateDeckManaChart();
         }
-        console.log(this.deck)
-        console.log(`There are ${this.cardsInDeckNum} cards in the deck`)
     }
 
     removeCardFromDeck(cardId) {
@@ -72,7 +76,5 @@ export default class DeckModel {
                 this.updateDeckManaChart();
             }
         }
-        console.log(this.deck)
-        console.log(`There are ${this.cardsInDeckNum} cards in the deck`)
     }
 }
