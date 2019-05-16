@@ -88,6 +88,7 @@ function filterCards(){
         if(selectField.value == "default") return true;
         if(selectField.value == "even") return card.cost%2==0;
         if(selectField.value == "odd") return card.cost%2==1;
+        if(selectField.value == "8+") return card.cost>=8
         return card.cost==selectField.value;
     });
     cards = cards.filter(function(card) {
