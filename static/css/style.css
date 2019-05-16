@@ -4,8 +4,21 @@ body {
     position: relative;
 }
 
+/*  ============================ NAVIGATION=========================*/
+
 .class-icon {
     max-height: 50px;
+    border-radius: 10px;
+    transition: all .2s;
+}
+
+.class-icon:hover {
+    transform: scale(1.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 
