@@ -1,10 +1,4 @@
 
-.fit-image {
-    width: 100%;
-
-}
-
-
 body {
     background-image: url("https://images2.alphacoders.com/159/159670.jpg");
 }
@@ -14,6 +8,43 @@ body {
     padding: 0;
     box-sizing: border-box;
 }
+
+/*  ============================ CARD DISPLAY =========================*/
+
+    .fit-image {
+    width: 100%;
+}
+    .card_display_container {
+        background-image: url('../images/deckbuilder_card_frame.png');
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: contain;
+        position: relative;
+    }
+
+    #previous {
+        position: absolute;
+        left: 30px;
+        top: 270px;
+        background-color: transparent;
+        border: none;
+    }
+
+    #previous img {
+        width: 40px;
+    }
+
+    #next {
+       position: absolute;
+        right: 30px;
+        top: 270px;
+        background-color: transparent;
+        border: none;
+    }
+
+    #next img {
+        width: 40px;
+    }
 
 
     /*  ============================ MANA GRAPH =========================*/

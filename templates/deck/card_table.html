@@ -10,18 +10,14 @@
         </div>
 
 
-        <div id="six_cards" class="container px-0">
+        <div id="six_cards" class="container px-0 card_display_container">
+            <button id="previous" name="previous" data-js="page-btn"><img src="{{ url_for('static', filename="images/Arrow_head_left.png") }}" alt=""></button>
+            <button id="next" name="next" data-js="page-btn"><img src="{{ url_for('static', filename="images/Arrow_head_right.png") }}" alt=""></button>
             <div class="row">
-                <div class="col-1">
-                    <button id="previous" name="previous" onclick="changePage(event)">Previous</button>
-                </div>
-                <div class="col-10 px-0">
+                <div class="col-10 offset-1 px-0">
                     <div class="container">
                         <div class="row" id="cards"></div>
                     </div>
-                </div>
-                <div class="col-1 align-middle">
-                    <button id="next" name="next" class="" onclick="changePage(event)">Next</button>
                 </div>
             </div>
             <div class="row">

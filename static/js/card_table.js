@@ -13,7 +13,8 @@ function download(){
 }
 
 function changePage(event){
-    let button = event.target.id;
+    const selectedBtn = event.target.closest('[data-js="page-btn"]');
+    let button = selectedBtn.id;
 
     let set;
     if (state.subSet == "neutral"){
@@ -176,6 +177,8 @@ async function main(){
     let filter = document.getElementById('filter');
     let select = document.getElementById('select');
     let checkboxes = document.getElementById('checkboxes');
+    // let prevBtn = document.getElementById('previous');
+    // let nextBtn = document.getElementById('next');
 
 
     tab1.addEventListener('click', selectSubSet);
