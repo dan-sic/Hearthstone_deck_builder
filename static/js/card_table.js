@@ -129,10 +129,14 @@ function manipulateDom(cards){
     }
     let display = '';
 
-    for(let i=0;i<cardsPerPage;i++){
-        const cardId = cards[i + state.pageNumber[set] * 6].id;
-        const card = `<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>`;
-
+    for(let i=0;i<6;i++){
+        let card;
+        if(i<cardsPerPage) {
+            const cardId = cards[i + state.pageNumber[set] * 6].id;
+            card = `<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>`;
+        }else{
+            card = `<img src='/static/images/Card_reverse.png' data-cardid="None">`;
+        }
         display += card;
     }
 
