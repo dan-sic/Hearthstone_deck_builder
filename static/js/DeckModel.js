@@ -45,15 +45,17 @@ export default class DeckModel {
 
     addCardToDeck(cardId) {
         const cardInDeck = this.deck.find(card => card.id === cardId);
+        const numberOfCardsInDeck = this.getNumberOfCardsInDeck();
+        const isDeckWithinLimit = numberOfCardsInDeck < 30;
 
         if (cardInDeck) {
             const isAnotherCardCanBeAdded = this.checkIfCardCanBeAdded(cardInDeck);
-            if (isAnotherCardCanBeAdded) {
+            if (isAnotherCardCanBeAdded && isDeckWithinLimit) {
                 cardInDeck.occurance += 1;
                 this.cardsInDeckNum += 1;
                 this.updateDeckManaChart();
             }
-        } else {
+        } else if (isDeckWithinLimit) {
             const card = this.cards.filter(card => card.id === cardId)[0];
             card.occurance = 1;
             this.deck.push(card);
@@ -76,5 +78,9 @@ export default class DeckModel {
                 this.updateDeckManaChart();
             }
         }
+    }
+
+    getNumberOfCardsInDeck() {
+        return this.deck.reduce((total, card) => total + card.occurance, 0);
     }
 }
