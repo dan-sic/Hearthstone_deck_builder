@@ -1,17 +1,24 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="../static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
-    <link href="../static/css/style.css" type="text/css" rel="stylesheet">
+{#<!doctype html>#}
+{#<html lang="en">#}
+{#<head>#}
+{#    <meta charset="UTF-8">#}
+{#    <meta name="viewport"#}
+{#          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">#}
+{#    <meta http-equiv="X-UA-Compatible" content="ie=edge">#}
+{#    <link href="../static/css/bootstrap.min.css" type="text/css" rel="stylesheet">#}
+{#    <link href="../static/css/style.css" type="text/css" rel="stylesheet">#}
+{##}
+{#    <title>Hearthstone</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Hearthstone</h1>#}
 
-    <title>Hearthstone</title>
-</head>
-<body>
-    <h1>Hearthstone</h1>
+{% extends "layout.html" %}
+{% block head %}
+    <link href="../static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
+{% endblock head %}
+{% block contents %}
 
 <div class="container" id="outer">
     <h1>
@@ -21,17 +28,17 @@
     </h1>
 <div class="container" id="inner">
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
-          <a href="{{ url_for('route_deck_builder', class="druid") }}"><img data-name="druid" src="/static/images/db-class-druid.jpg" > </a>
+          <a href="{{ url_for('route_deck_builder', class="druid") }}"><img data-name="druid" src="/static/images/db-class-druid.jpg" class="center"> </a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="hunter") }}"><img data-name="hunter" src="/static/images/db-class-hunter.jpg" ></a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="mage") }}"><img data-name="mage" src="/static/images/db-class-mage.jpg" ></a>
       </div>
@@ -39,17 +46,17 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="paladin") }}"><img data-name="paladin" src="/static/images/db-class-paladin.jpg" > </a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="priest") }}"><img data-name="priest" src="/static/images/db-class-priest.jpg" ></a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="rogue") }}"><img data-name="rogue" src="/static/images/db-class-rogue.jpg" ></a>
       </div>
@@ -57,17 +64,17 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="shaman") }}"><img data-name="shaman" class = "d-block" src="/static/images/db-class-shaman.jpg" > </a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="warlock") }}"><img data-name="warlock" src="/static/images/db-class-warlock.jpg" ></a>
       </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-4">
       <div id="container">
           <a href="{{ url_for('route_deck_builder', class="warrior") }}"><img data-name="warrior" src="/static/images/db-class-warrior.jpg" ></a>
       </div>
@@ -77,5 +84,7 @@
 </div>
 
 {#    <script src="{{ url_for('static', filename='js/javascript.js') }}" ></script>#}
-</body>
-</html>
+
+{% endblock contents %}
+{#</body>#}
+{#</html>#}

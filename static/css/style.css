@@ -1,8 +1,10 @@
 
 
 img {
-    /*display: block;*/
+    display: block;
     padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
 
     background-position: center center;
     height: 100%;
@@ -11,8 +13,13 @@ img {
 .fit-image {
 
     width: 100%;
+    /*width: auto;*/
 
 }
+
+/*.clearfix {*/
+  /*overflow: auto;*/
+/*}*/
 
 
 body {
@@ -22,8 +29,9 @@ body {
 
   #container{
     padding: 10px;
-
-    -webkit-clip-path: polygon(0 88%, 12% 95%, 37% 100%, 63% 100%, 88% 95%, 100% 88%, 100% 36%, 94% 27%, 85% 16%, 76% 8%, 67% 2%, 57% 0, 50% 0, 42% 1%, 30% 5%, 21% 12%, 13% 20%, 5% 29%, 0 38%);
+    max-width: fit-content;
+    text-align: center;
+    --webkit-clip-path: polygon(0 88%, 12% 95%, 37% 100%, 63% 100%, 88% 95%, 100% 88%, 100% 36%, 94% 27%, 85% 16%, 76% 8%, 67% 2%, 57% 0, 50% 0, 42% 1%, 30% 5%, 21% 12%, 13% 20%, 5% 29%, 0 38%);
     clip-path: polygon(0 88%, 12% 95%, 37% 100%, 63% 100%, 88% 95%, 100% 88%, 100% 36%, 94% 27%, 85% 16%, 76% 8%, 67% 2%, 57% 0, 50% 0, 42% 1%, 30% 5%, 21% 12%, 13% 20%, 5% 29%, 0 38%);
       /*object-fit: contain;*/
 
