@@ -60,6 +60,19 @@ function selectCardHandler(e) {
     return false
 }
 
+function removeCardFromDeck(e) {
+    const selectedCard = e.target.closest('.deck__card-name');
+    if (selectedCard) {
+        const cardId = selectedCard.dataset.cardId;
+        deckData.removeCardFromDeck(cardId);
+        const chartValues = deckData.deckManaChart;
+        updateChartView(chartValues);
+        displayCurrentDeck(deckData.deck);
+
+        displayDeckInfo();
+    }
+}
+
 function selectSubSet(e){
     state.subSet = e.target.name;
     printCards();
@@ -207,8 +220,7 @@ async function main(){
     let filter = document.getElementById('filter');
     let select = document.getElementById('select');
     let checkboxes = document.getElementById('checkboxes');
-    // let prevBtn = document.getElementById('previous');
-    // let nextBtn = document.getElementById('next');
+    let deckBody = document.querySelector('[data-js="deck__body"]');
 
     loadMechanicsFilter(checkboxes);
 
@@ -220,6 +232,7 @@ async function main(){
     filter.addEventListener('keyup', printCards);
     select.addEventListener('change', printCards);
     checkboxes.addEventListener('click', checkBoxChange);
+    deckBody.addEventListener('click', removeCardFromDeck)
 
     displayDeckInfo();
     printCards();
