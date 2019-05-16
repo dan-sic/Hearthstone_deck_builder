@@ -141,7 +141,7 @@ function manipulateDom(cards){
         }else{
             card = `
                 <div class="col-md-4 col-sm-6">
-                    <img src='/static/images/Card_reverse.png' data-cardid="None">
+                    <img src='/static/images/Card_reverse.png' data-cardid="None" class="fit-image">
                 </div>
             `;
         }
