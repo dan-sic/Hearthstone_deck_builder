@@ -34,8 +34,8 @@ function show(){
     	<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${id}.png'>
     `
         card.style.display = "block";
-        const posX = event.clientX - 320;
-        const posY = event.clientY - 320;
+        const posX = event.clientX+1;
+        const posY = event.clientY+1;
 
         card.style.left = `${posX}px`;
         card.style.top = `${posY}px`;

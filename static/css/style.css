@@ -1,6 +1,7 @@
 body {
     background-image: url("https://images2.alphacoders.com/159/159670.jpg");
     background-color: black;
+    position: relative;
 }
 
 .class-icon {
@@ -266,12 +267,14 @@ html {
     font-weight: bold;
 }
 
-.card {
+.cardHover {
     display: none;
     position: absolute;
     overflow: visible;
     height: 0px;
     width: 0px;
+    top: 0;
+    left: 0;
     z-index:1;
 }
 
