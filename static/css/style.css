@@ -54,7 +54,7 @@ body {
   }
 
   #choose {
-
+    text-align: center;
   }
 
 * {
@@ -90,8 +90,18 @@ body {
 /*  ============================ CARD DISPLAY =========================*/
 
     .fit-image {
-    width: 100%;
+        position: absolute;
+        top: -25px;
+        left: -10px;
+        width: 210px;
 }
+    .card-wrapper {
+        overflow: hidden;
+        height: 260px;
+        width: 185px;
+        margin-top: 30px;
+        position: relative;
+    }
     .card_display_container {
         background-image: url('../images/deckbuilder_card_frame.png');
         background-repeat: no-repeat;
@@ -104,7 +114,7 @@ body {
 
     #previous {
         position: absolute;
-        left: 30px;
+        left: 20px;
         top: 270px;
         background-color: transparent;
         border: none;
@@ -116,7 +126,7 @@ body {
 
     #next {
        position: absolute;
-        right: 30px;
+        right: 20px;
         top: 270px;
         background-color: transparent;
         border: none;
@@ -124,6 +134,19 @@ body {
 
     #next img {
         width: 40px;
+    }
+    
+    .page-info {
+        position: absolute;
+        bottom: 10px;
+        left: 360px;
+        display: flex;
+        width: 50px;
+        justify-content: space-between;
+        padding: 2px 4px;
+        border-radius: 5px;
+        background-color: navajowhite;
+        border: 2px solid dimgrey;
     }
 
 
@@ -133,6 +156,9 @@ body {
 
 .container-deck-info {
     height: 110px;
+    width: 415px;
+    margin-left: -15px;
+    background-color: wheat;
 }
 
 

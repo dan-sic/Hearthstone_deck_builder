@@ -2,39 +2,39 @@
 {% block header %}
     <div class="row">
         <div class="col-1">
-            <a href="/deck-builder?class=paladin"><img class="class-icon"
+            <a href="/deck-builder?class=Druid"><img class="class-icon"
                                                        src="{{ url_for('static', filename='images/db-class-druid.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=hunter"><img class="class-icon"
+            <a href="/deck-builder?class=Hunter"><img class="class-icon"
                                                       src="{{ url_for('static', filename='images/db-class-hunter.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=mage"><img class="class-icon"
+            <a href="/deck-builder?class=Mage"><img class="class-icon"
                                                     src="{{ url_for('static', filename='images/db-class-mage.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=paladin"><img class="class-icon"
+            <a href="/deck-builder?class=Paladin"><img class="class-icon"
                                                        src="{{ url_for('static', filename='images/db-class-paladin.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=priest"><img class="class-icon"
+            <a href="/deck-builder?class=Priest"><img class="class-icon"
                                                       src="{{ url_for('static', filename='images/db-class-priest.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=rogue"><img class="class-icon"
+            <a href="/deck-builder?class=Rogue"><img class="class-icon"
                                                      src="{{ url_for('static', filename='images/db-class-rogue.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=shaman"><img class="class-icon"
+            <a href="/deck-builder?class=Shaman"><img class="class-icon"
                                                       src="{{ url_for('static', filename='images/db-class-shaman.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=warlock"><img class="class-icon"
+            <a href="/deck-builder?class=Warlock"><img class="class-icon"
                                                        src="{{ url_for('static', filename='images/db-class-warlock.jpg') }}"></a>
         </div>
         <div class="col-1">
-            <a href="/deck-builder?class=warrior"><img class="class-icon"
+            <a href="/deck-builder?class=Warrior"><img class="class-icon"
                                                        src="{{ url_for('static', filename='images/db-class-warrior.jpg') }}"></a>
         </div>
     </div>
@@ -64,4 +64,7 @@
             </div>
         </div>
     </div>
+    <audio autoplay loop preload="auto">
+      <source src="../static/audio/music.mp3" type="audio/mpeg">
+    </audio>
 {% endblock contents %}
