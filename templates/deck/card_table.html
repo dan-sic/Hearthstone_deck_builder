@@ -1,16 +1,38 @@
 {% block contents %}
 
-    <button id="class" name="{{ cardClass }}">{{ cardClass }}</button><br>
-    <button id="neutral" name="neutral">Neutral</button><br>
+    <div>
+        <div>
+            <button id="class" name="{{ cardClass }}">{{ cardClass }}</button>
+            <br>
+            <button id="neutral" name="neutral">Neutral</button>
+            <br>
+            <div id="cardClass" data-name="{{ cardClass }}">{{ cardClass }}</div>
+        </div>
 
-    <div id="cardClass" data-name="{{ cardClass }}">{{ cardClass }}</div>
-    <div id="cards"></div>
-    <br>
-    <button id="previous" name="previous">Previous</button>
-    <br>
-    <button id="next" name="next" >Next</button>
 
-    <div id="page"></div>
-    <div id="maxPage"></div>
+        <div id="six_cards" class="container px-0">
+            <div class="row">
+                <div class="col-1">
+                    <button id="previous" name="previous" onclick="changePage(event)">Previous</button>
+                </div>
+                <div class="col-10 px-0">
+                    <div class="container">
+                        <div class="row" id="cards"></div>
+                    </div>
+                </div>
+                <div class="col-1 align-middle">
+                    <button id="next" name="next" class="" onclick="changePage(event)">Next</button>
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <div id="page"></div>
+                    <div id="maxPage"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
 {% endblock contents %}

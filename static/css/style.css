@@ -1,4 +1,14 @@
 
+.fit-image {
+    width: 100%;
+
+}
+
+
+body {
+    background-image: url("https://images2.alphacoders.com/159/159670.jpg");
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -98,6 +108,14 @@
     width: 20%;
 }
 
+
+html {
+  background: url("https://images2.alphacoders.com/159/159670.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 .deck__mana-icon {
     display: inline-block;
     width: 16px;
@@ -160,4 +178,5 @@
 }
 
 #checkboxes label:hover {
-  background-color: #1e90ff;
+    background-color: #1e90ff;
+}

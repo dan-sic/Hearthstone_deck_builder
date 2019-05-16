@@ -25,7 +25,7 @@ function changePage(event){
     if (button == "previous" && state.pageNumber[set]>0){
         state.pageNumber[set] -= 1;
     }
-    if (button == "next" && state.pageNumber[set] < state.maxPage-1){
+    if (button == "next" && state.pageNumber[set] < state.maxPage){
         state.pageNumber[set] += 1;
     }
     printCards();
@@ -133,9 +133,17 @@ function manipulateDom(cards){
         let card;
         if(i<cardsPerPage) {
             const cardId = cards[i + state.pageNumber[set] * 6].id;
-            card = `<img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId}>`;
+            card = `
+                <div class="col-md-4 col-sm-6">
+                    <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+               </div>
+            `;
         }else{
-            card = `<img src='/static/images/Card_reverse.png' data-cardid="None">`;
+            card = `
+                <div class="col-md-4 col-sm-6">
+                    <img src='/static/images/Card_reverse.png' data-cardid="None">
+                </div>
+            `;
         }
         display += card;
     }
@@ -144,7 +152,7 @@ function manipulateDom(cards){
     let page = document.getElementById('page');
     let mPage = document.getElementById('maxPage');
 
-    state.maxPage = Math.floor(cards.length / 6);
+    state.maxPage = Math.floor(cards.length / 6)-1;
 
     cardList.addEventListener('click', selectCardHandler)
     cardList.addEventListener('contextmenu', selectCardHandler, false)
