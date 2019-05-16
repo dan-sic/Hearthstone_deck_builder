@@ -11,6 +11,4 @@ function showCheckboxes() {
   }
 }
 
-function test() {
-    alert('working');
-}
+checkboxes.addEventListener('click', showCheckboxes);

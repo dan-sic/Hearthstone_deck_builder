@@ -39,7 +39,7 @@ function selectSubSet(e){
 }
 
 function printCards(){
-    cards = filterCards();
+    let cards = filterCards();
     manipulateDom(cards);
 }
 
@@ -56,7 +56,7 @@ function checkBoxChange(event){
 }
 
 function filterCards(){
-    cards = state.cards.filter(function(card) {
+    let cards = state.cards.filter(function(card) {
         return card.cardClass == state.subSet.toUpperCase();
     });
 
@@ -141,10 +141,18 @@ async function main(){
     let cardList = document.getElementById('cards');
     let tab1 = document.getElementById('class');
     let tab2 = document.getElementById('neutral');
+    let prev = document.getElementById('previous');
+    let next = document.getElementById('next');
+    let filter = document.getElementById('filter');
+    let select = document.getElementById('select');
 
     cardList.addEventListener('click', selectCard);
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
+    prev.addEventListener('click', selectSubSet);
+    next.addEventListener('click', selectSubSet);
+    filter.addEventListener('keyup', printCards);
+    select.addEventListener('change', printCards);
 
     printCards();
 }
