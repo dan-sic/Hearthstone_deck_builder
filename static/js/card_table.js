@@ -30,6 +30,11 @@ function changePage(event){
 function selectCardHandler(e) {
     e.preventDefault();
 
+    const isElementNotCard = !e.target.dataset.cardid;
+    if(isElementNotCard) {
+        return false;
+    }
+
     const cardId = e.target.dataset.cardid;
 
     const isRightMouseClick = e.type === 'contextmenu';
@@ -129,7 +134,9 @@ function manipulateDom(cards){
             const cardId = cards[i + state.pageNumber[set] * 6].id;
             card = `
                 <div class="col-md-4 col-sm-6">
-                    <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+                    <div class="card-wrapper">
+                        <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+                    </div>
                </div>
             `;
         }
@@ -155,28 +162,6 @@ function manipulateDom(cards){
 }
 
 function loadMechanicsFilter(checkboxes){
-    /*var uniqueMechanics = state.cards.reduce((arr, card) => {
-        if(card.mechanics) {
-            for (let prop of card.mechanics) {
-                if(!(arr.includes(prop))) {
-                    arr.push(prop);
-                }
-            }
-            return [...arr];
-        }
-        return [...arr];
-    }, []);
-
-    uniqueMechanics.sort(function (a, b) {
-        if (a < b){
-            return -1;
-        }
-        if (a > b){
-            return 1;
-        }
-        return 0;
-    });*/
-
     let uniqueMechanics = ['Adapt', 'Battlecry', 'Charge', 'Choose One', 'Combo', 'Deathrattle', 'Discover', 'Divine Shield',
         'Echo', 'Freeze', 'Immune', 'Inspire', 'Joust', 'Lackey', 'Lifesteal', 'Magnetic', 'Overkill', 'Overload', 'Poisonous',
         'Quest', 'Recruit', 'Rush', 'Secret', 'Silence', 'Spellpower'/*Spell Damage*/, 'Start of Game', 'Stealth', 'Summon', 'Taunt', 'Transform',
