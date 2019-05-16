@@ -1,33 +1,31 @@
 {% block contents %}
+    <div class="searchpanel">
+        <input type="text" id="filter" class="searchpanel__search-input" placeholder="Search">
 
-    <input type="text" id="filter" placeholder="Search">
+        <select id="select" name="select" class="searchpanel__mana-filter">
+            <option value="default" selected="selected">Mana filter</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8+">8+</option>
+            <option value="even">Even</option>
+            <option value="odd">Odd</option>
+        </select>
 
-    <select id="select" name="select">
-        <option value="default" selected="selected">Mana filter</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8+">8+</option>
-        <option value="even">Even</option>
-        <option value="odd">Odd</option>
-    </select>
-
-    <form>
-      <div class="multiselect">
-        <div class="selectBox" onclick="showCheckboxes()">
-          <select>
-            <option>Select an option</option>
-          </select>
-          <div class="overSelect"></div>
-        </div>
-        <div id="checkboxes">
-        </div>
-      </div>
-    </form>
-
+          <div class="multiselect">
+            <div class="selectBox" onclick="showCheckboxes()">
+              <select class="searchpanel__multiselect">
+                <option>Select parameter</option>
+              </select>
+              <div class="overSelect"></div>
+            </div>
+            <div id="checkboxes" class="searchpanel__checkboxes">
+            </div>
+          </div>
+    </div>
 {% endblock contents %}
