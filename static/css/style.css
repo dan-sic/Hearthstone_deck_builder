@@ -95,6 +95,58 @@ body {
 
 /*  ============================ CARD DISPLAY =========================*/
 
+#Druid, #Hunter, #Mage, #Paladin, #Priest, #Rogue, #Shaman, #Warlock, #Warrior, #neutral2 {
+  /*image: url('../images/classes-sprites.png');*/
+  background-repeat: no-repeat;
+  object-fit: none;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  position: absolute;
+
+}
+
+#Druid img{
+    object-position: 0 -192px;
+    }
+
+#Hunter img{
+    object-position: 0 -160px;
+    }
+
+#Mage img {
+    object-position: 0 -256px;
+}
+
+#Paladin img {
+    object-position: 0 -128px;
+}
+
+#Priest img{
+    object-position: 0 -288px;
+}
+
+#Rogue img{
+    object-position: 0 -96px;
+}
+
+#Shaman img{
+    object-position: 0 -64px;
+}
+
+#Warlock img{
+    object-position: 0 -224px;
+}
+
+#Warrior img{
+    object-position: 0 -32px;
+}
+
+#neutral2 img{
+    object-position: 0 0;
+    }
+
+
 .card-display-container {
     background-color: wheat;
     background-clip: content-box;
