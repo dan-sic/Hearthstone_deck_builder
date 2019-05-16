@@ -1,4 +1,45 @@
 {% extends "layout.html" %}
+{% block header %}
+    <div class="row">
+        <div class="col-1">
+            <a href="/deck-builder?class=paladin"><img class="class-icon"
+                                                       src="{{ url_for('static', filename='images/db-class-druid.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=hunter"><img class="class-icon"
+                                                      src="{{ url_for('static', filename='images/db-class-hunter.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=mage"><img class="class-icon"
+                                                    src="{{ url_for('static', filename='images/db-class-mage.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=paladin"><img class="class-icon"
+                                                       src="{{ url_for('static', filename='images/db-class-paladin.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=priest"><img class="class-icon"
+                                                      src="{{ url_for('static', filename='images/db-class-priest.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=rogue"><img class="class-icon"
+                                                     src="{{ url_for('static', filename='images/db-class-rogue.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=shaman"><img class="class-icon"
+                                                      src="{{ url_for('static', filename='images/db-class-shaman.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=warlock"><img class="class-icon"
+                                                       src="{{ url_for('static', filename='images/db-class-warlock.jpg') }}"></a>
+        </div>
+        <div class="col-1">
+            <a href="/deck-builder?class=warrior"><img class="class-icon"
+                                                       src="{{ url_for('static', filename='images/db-class-warrior.jpg') }}"></a>
+        </div>
+    </div>
+
+{% endblock header %}
 {% block contents %}
     <div class="container p-1" id="deck_paper">
         <div class="row">
@@ -10,7 +51,7 @@
                     {% include "/deck/card_table.html" %}
                 </div>
             </div>
-            <div class="col-4 p-0" >
+            <div class="col-4 p-0">
                 <div>
                     {% include '/deck/deck-info.html' %}
                 </div>

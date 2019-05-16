@@ -11,17 +11,20 @@
 
 </head>
 <body>
-<header>
+<header class="mb-3">
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Hearthstone</a>
+        <a class="navbar-brand" href="/">Hearthstone</a>
+        <div class="container">
+            {% block header %}{% endblock header %}
+        </div>
     </nav>
 </header>
 <main>
     {% block contents %}{% endblock contents %}
-{#<<<<<<< HEAD#}
-{#    <script src="{{ url_for('static', filename='js/card_table.js') }}" ></script>#}
-{#    <script src="{{ url_for('static', filename='js/javascript.js') }}" ></script>#}
-{#=======#}
+    {#<<<<<<< HEAD#}
+    {#    <script src="{{ url_for('static', filename='js/card_table.js') }}" ></script>#}
+    {#    <script src="{{ url_for('static', filename='js/javascript.js') }}" ></script>#}
+    {#=======#}
 </main>
 
 </body>

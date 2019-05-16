@@ -3,6 +3,10 @@ body {
     background-color: black;
 }
 
+.class-icon {
+    max-height: 50px;
+}
+
 
 /*  ============================ MAIN PAGE =========================*/
 
