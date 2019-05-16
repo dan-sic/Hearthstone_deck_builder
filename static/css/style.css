@@ -64,6 +64,20 @@ body {
       background-size: 100% 100%;
   }
 
+  #six_cards {
+      padding: 50px;
+      background-image: url("/static/images/paper.png");
+      background-repeat:no-repeat;
+      background-position: center top;
+      background-size: 100% 100%;
+  }
+
+  #deck_paper {
+
+      background-color: rgb(219, 209, 180);
+      padding-top: 50px;
+      padding-bottom: 50px;
+  }
 
   #outer {
       background-color: rgb(219, 209, 180);
@@ -78,7 +92,8 @@ body {
 
 
 body {
-    background-image: url("https://images2.alphacoders.com/159/159670.jpg");
+    /*background-image: url("https://images2.alphacoders.com/159/159670.jpg");*/
+    background-image: url("../images/Tavern_background.png");
 }
 
 * {
