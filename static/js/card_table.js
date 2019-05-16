@@ -16,12 +16,7 @@ function changePage(event){
     const selectedBtn = event.target.closest('[data-js="page-btn"]');
     let button = selectedBtn.id;
 
-    let set;
-    if (state.subSet == "neutral"){
-        set = 1;
-    }else{
-        set = 0;
-    }
+    let set = state.subSet == "neutral" ? 1: 0;
 
     if (button == "previous" && state.pageNumber[set]>0){
         state.pageNumber[set] -= 1;
@@ -61,16 +56,18 @@ function printCards(){
     manipulateDom(cards);
 }
 
-function checkBoxChange(event){
+function checkBoxChange(event) {
     let checkBox = event.target;
     let mechanic = checkBox.id.toUpperCase();
-    if(checkBox.checked){
-        state.mechanics.push(mechanic);
-    }else{
-        let i = state.mechanics.indexOf(mechanic);
-        state.mechanics.splice(i,1);
+    if (mechanic) {
+        if (checkBox.checked) {
+            state.mechanics.push(mechanic);
+        } else {
+            let i = state.mechanics.indexOf(mechanic);
+            state.mechanics.splice(i, 1);
+        }
+        printCards();
     }
-    printCards();
 }
 
 function filterCards(){
@@ -117,16 +114,12 @@ function filterCards(){
 }
 
 function manipulateDom(cards){
-    let set;
-    if (state.subSet == "neutral"){
-        set = 1;
-    }else{
-        set = 0;
-    }
+    let set = state.subSet == "neutral" ? 1: 0;
 
     let cardsPerPage = 6;
     if (cards.length < 6){
         cardsPerPage = cards.length;
+        state.pageNumber[set] = 0;
     }
     let display = '';
 
@@ -151,7 +144,8 @@ function manipulateDom(cards){
     let page = document.getElementById('page');
     let mPage = document.getElementById('maxPage');
 
-    state.maxPage = Math.floor(cards.length / 6)-1;
+    const max = Math.floor(cards.length / 6)-1;
+    state.maxPage = max > 0 ? max : 0;
 
     cardList.addEventListener('click', selectCardHandler)
     cardList.addEventListener('contextmenu', selectCardHandler, false)
@@ -159,6 +153,48 @@ function manipulateDom(cards){
     cardList.innerHTML = display;
     page.innerHTML = state.pageNumber[set];
     mPage.innerHTML = state.maxPage;
+}
+
+function loadMechanicsFilter(checkboxes){
+    /*var uniqueMechanics = state.cards.reduce((arr, card) => {
+        if(card.mechanics) {
+            for (let prop of card.mechanics) {
+                if(!(arr.includes(prop))) {
+                    arr.push(prop);
+                }
+            }
+            return [...arr];
+        }
+        return [...arr];
+    }, []);
+
+    uniqueMechanics.sort(function (a, b) {
+        if (a < b){
+            return -1;
+        }
+        if (a > b){
+            return 1;
+        }
+        return 0;
+    });*/
+
+    let uniqueMechanics = ['Adapt', 'Battlecry', 'Charge', 'Choose One', 'Combo', 'Deathrattle', 'Discover', 'Divine Shield',
+        'Echo', 'Freeze', 'Immune', 'Inspire', 'Joust', 'Lackey', 'Lifesteal', 'Magnetic', 'Overkill', 'Overload', 'Poisonous',
+        'Quest', 'Recruit', 'Rush', 'Secret', 'Silence', 'Spellpower'/*Spell Damage*/, 'Start of Game', 'Stealth', 'Summon', 'Taunt', 'Transform',
+        'Twinspell', 'Windfury]'];
+
+    let display = '';
+
+    for(let i in uniqueMechanics){
+        let checkBox = `
+            <label for="${uniqueMechanics[i]}">
+                <input type="checkbox" id="${uniqueMechanics[i]}"/>${uniqueMechanics[i]}</label>
+        `;
+
+        display += checkBox;
+    }
+
+    checkboxes.innerHTML = display;
 }
 
 async function main(){
@@ -178,6 +214,7 @@ async function main(){
     // let prevBtn = document.getElementById('previous');
     // let nextBtn = document.getElementById('next');
 
+    loadMechanicsFilter(checkboxes);
 
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
@@ -190,5 +227,6 @@ async function main(){
 
     printCards();
 }
+
 
 main();
