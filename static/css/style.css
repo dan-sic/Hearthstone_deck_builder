@@ -4,8 +4,21 @@ body {
     position: relative;
 }
 
+/*  ============================ NAVIGATION=========================*/
+
 .class-icon {
     max-height: 50px;
+    border-radius: 10px;
+    transition: all .2s;
+}
+
+.class-icon:hover {
+    transform: scale(1.2);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 
@@ -71,25 +84,23 @@ body {
     margin-right: auto;
 
     background-position: center center;
-    /*height: 100%;*/
     width: 100%;
 }
 
 
 .fit-image {
-
     width: 100%;
-    /*width: auto;*/
-
 }
 
-/*.clearfix {*/
-  /*overflow: auto;*/
-/*}*/
 
 /*  ============================ CARD DISPLAY =========================*/
 
-    .fit-image {
+.card-display-container {
+    background-color: wheat;
+    background-clip: content-box;
+}
+
+.fit-image {
         position: absolute;
         top: -25px;
         left: -10px;
@@ -227,7 +238,9 @@ body {
 
 .deck-wrapper {
     width: 450px;
-    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+    padding-top: 20px;
     min-height: 500px;
     background-color: wheat;
 }
@@ -304,10 +317,38 @@ html {
     z-index:1;
 }
 
-        /*  ============================ FILTER MECHANICS =========================*/
+/*  ============================ SEARCH PANEL =========================*/
+
+.searchpanel {
+    padding: 20px 5px 20px 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.searchpanel__search-input {
+    padding: 5px 10px;
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+.searchpanel__mana-filter {
+    background-color: white;
+    border: 1px solid grey;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.searchpanel__multiselect {
+    background-color: white;
+    border: 1px solid grey;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
 
 .multiselect {
   width: 200px;
+    position: relative;
 }
 
 .selectBox {
@@ -330,6 +371,13 @@ html {
 #checkboxes {
   display: none;
   border: 1px #dadada solid;
+    position: absolute;
+    height: 300px;
+    overflow-y: scroll;
+    z-index: 2;
+    width: 200px;
+    background-color: white;
+    padding: 5px 10px;
 }
 
 #checkboxes label {

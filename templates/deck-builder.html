@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block header %}
-    <div class="row">
+    <div class="row nav-container">
         <div class="col-1">
             <a href="/deck-builder?class=Druid"><img class="class-icon"
                                                        src="{{ url_for('static', filename='images/db-class-druid.jpg') }}"></a>
@@ -43,7 +43,7 @@
 {% block contents %}
     <div class="container p-1" id="deck_paper">
         <div class="row">
-            <div class="col-8">
+            <div class="col-8 card-display-container">
                 <div class="row">
                     {% include "/deck/filter.html" %}
                 </div>
@@ -64,7 +64,7 @@
             </div>
         </div>
     </div>
-    <audio autoplay loop preload="auto">
+    <audio preload="auto">
       <source src="../static/audio/music.mp3" type="audio/mpeg">
     </audio>
 {% endblock contents %}

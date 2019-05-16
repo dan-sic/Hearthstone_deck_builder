@@ -1,6 +1,6 @@
 import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
-import { displayCurrentDeck } from './deckView.js';
+import { displayCurrentDeck, showCardSnippet, hideCardSnippet } from './deckView.js';
 
 const state = {};
 let deckData;
@@ -29,7 +29,7 @@ function changePage(event){
 
 function displayDeckInfo() {
     const cardNumberElement = document.getElementById('cards-number');
-    const numberOfCardsInDeck = deckData.deck.reduce((total, card) => total + card.occurance, 0);
+    const numberOfCardsInDeck = deckData.getNumberOfCardsInDeck();
     cardNumberElement.textContent = numberOfCardsInDeck;
 }
 
@@ -58,6 +58,23 @@ function selectCardHandler(e) {
 
 
     return false
+}
+
+function removeCardFromDeck(e) {
+    const selectedCard = e.target.closest('.deck__card-name');
+    if (selectedCard) {
+        const cardId = selectedCard.dataset.cardId;
+        deckData.removeCardFromDeck(cardId);
+        const chartValues = deckData.deckManaChart;
+
+        updateChartView(chartValues);
+
+        displayCurrentDeck(deckData.deck);
+
+        displayDeckInfo();
+
+        hideCardSnippet();
+    }
 }
 
 function selectSubSet(e){
@@ -207,8 +224,8 @@ async function main(){
     let filter = document.getElementById('filter');
     let select = document.getElementById('select');
     let checkboxes = document.getElementById('checkboxes');
-    // let prevBtn = document.getElementById('previous');
-    // let nextBtn = document.getElementById('next');
+    let deckBody = document.querySelector('[data-js="deck__body"]');
+    let deck__body = document.getElementById('deck__body');
 
     loadMechanicsFilter(checkboxes);
 
@@ -220,6 +237,9 @@ async function main(){
     filter.addEventListener('keyup', printCards);
     select.addEventListener('change', printCards);
     checkboxes.addEventListener('click', checkBoxChange);
+    deckBody.addEventListener('click', removeCardFromDeck);
+    deck__body.addEventListener('mouseover', showCardSnippet);
+    deck__body.addEventListener('mouseleave', hideCardSnippet);
 
     displayDeckInfo();
     printCards();
