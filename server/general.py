@@ -4,6 +4,7 @@ from flask import render_template, redirect, request
 
 @app.route("/")
 def route_index():
+
     return render_template('index.html')
 
 

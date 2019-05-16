@@ -1,22 +1,94 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hearthstone</title>
-</head>
-<body>
-    <h1>Hearthstone</h1>
-    <a href="{{ url_for('route_deck_builder', class="druid") }}">Druid</a>
-    <a href="{{ url_for('route_deck_builder', class="hunter") }}">Hunter</a>
-    <a href="{{ url_for('route_deck_builder', class="mage") }}">Mage</a>
-    <a href="{{ url_for('route_deck_builder', class="paladin") }}">Paladin</a>
-    <a href="{{ url_for('route_deck_builder', class="priest") }}">Priest</a>
-    <a href="{{ url_for('route_deck_builder', class="rogue") }}">Rogue</a>
-    <a href="{{ url_for('route_deck_builder', class="shaman") }}">Shaman</a>
-    <a href="{{ url_for('route_deck_builder', class="warlock") }}">Warlock</a>
-    <a href="{{ url_for('route_deck_builder', class="warrior") }}">Warrior</a>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block head %}
+    <link href="../static/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/card_table.js') }}" defer></script>
+{% endblock head %}
+{% block contents %}
+
+    <div class="container" id="outer">
+        <h1>
+            <div class="container" id="choose">
+                <img src="{{ url_for('static', filename="images/choose2.PNG") }}">
+            </div>
+        </h1>
+        <div class="container" id="inner">
+            <div class="row">
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="druid") }}"><img data-name="druid"
+                                                                                          src="/static/images/db-class-druid.jpg"
+                                                                                          class="center portrait-img">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="hunter") }}"><img class="portrait-img"
+                                                                                           data-name="hunter"
+                                                                                           src="/static/images/db-class-hunter.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="mage") }}"><img class="portrait-img"
+                                                                                         data-name="mage"
+                                                                                         src="/static/images/db-class-mage.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="paladin") }}"><img class="portrait-img"
+                                                                                            data-name="paladin"
+                                                                                            src="/static/images/db-class-paladin.jpg">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="priest") }}"><img class="portrait-img"
+                                                                                           data-name="priest"
+                                                                                           src="/static/images/db-class-priest.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="rogue") }}"><img class="portrait-img"
+                                                                                          data-name="rogue"
+                                                                                          src="/static/images/db-class-rogue.jpg"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="shaman") }}"><img data-name="shaman"
+                                                                                           class="d-block portrait-img"
+                                                                                           src="/static/images/db-class-shaman.jpg">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="warlock") }}"><img class="portrait-img"
+                                                                                            data-name="warlock"
+                                                                                            src="/static/images/db-class-warlock.jpg"></a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div id="container">
+                        <a href="{{ url_for('route_deck_builder', class="warrior") }}"><img class="portrait-img"
+                                                                                            data-name="warrior"
+                                                                                            src="/static/images/db-class-warrior.jpg"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/javascript.js') }}"></script>
+
+{% endblock contents %}

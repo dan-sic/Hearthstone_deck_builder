@@ -1,19 +1,139 @@
-
-.fit-image {
-    width: 100%;
-
-}
-
-
 body {
     background-image: url("https://images2.alphacoders.com/159/159670.jpg");
+    background-color: black;
 }
+
+.class-icon {
+    max-height: 50px;
+}
+
+
+/*  ============================ MAIN PAGE =========================*/
+
+  #container{
+    padding: 10px;
+    max-width: fit-content;
+    text-align: center;
+    --webkit-clip-path: polygon(0 88%, 12% 95%, 37% 100%, 63% 100%, 88% 95%, 100% 88%, 100% 36%, 94% 27%, 85% 16%, 76% 8%, 67% 2%, 57% 0, 50% 0, 42% 1%, 30% 5%, 21% 12%, 13% 20%, 5% 29%, 0 38%);
+    clip-path: polygon(0 88%, 12% 95%, 37% 100%, 63% 100%, 88% 95%, 100% 88%, 100% 36%, 94% 27%, 85% 16%, 76% 8%, 67% 2%, 57% 0, 50% 0, 42% 1%, 30% 5%, 21% 12%, 13% 20%, 5% 29%, 0 38%);
+      /*object-fit: contain;*/
+
+    -webkit-transition: 1s ease-in-out;
+    -moz-transition: 1s ease-in-out;
+    -o-transition: 1s ease-in-out;
+    transition: 1s ease-in-out;
+
+  }
+  #container:hover {
+
+    padding: 10px;
+    /*object-fit: contain;*/
+
+    -webkit-transform:  scale(1.1);
+    -moz-transform:  scale(1.1);
+    -o-transform:  scale(1.1);
+    -ms-transform:  scale(1.1);
+    transform:  scale(1.1);
+
+  }
+
+  #inner {
+      padding: 50px;
+      background-image: url("/static/images/paper.png");
+      background-repeat:no-repeat;
+      background-position: center top;
+      background-size: 100% 100%;
+  }
+
+  #outer {
+      background-color: rgb(219, 209, 180);
+      padding-top: 50px;
+      padding-bottom: 50px;
+
+  }
+
+  #choose {
+
+  }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
+
+.portrait-img {
+    display: block;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    background-position: center center;
+    /*height: 100%;*/
+    width: 100%;
+}
+
+
+.fit-image {
+
+    width: 100%;
+    /*width: auto;*/
+
+}
+
+/*.clearfix {*/
+  /*overflow: auto;*/
+/*}*/
+
+/*  ============================ CARD DISPLAY =========================*/
+
+    .fit-image {
+    width: 100%;
+}
+    .card_display_container {
+        background-image: url('../images/deckbuilder_card_frame.png');
+        background-repeat: no-repeat;
+        background-position: top;
+        background-size: contain;
+        position: relative;
+        min-width: 774.656px;
+        min-height: 633.062px;
+    }
+
+    #previous {
+        position: absolute;
+        left: 30px;
+        top: 270px;
+        background-color: transparent;
+        border: none;
+    }
+
+    #previous img {
+        width: 40px;
+    }
+
+    #next {
+       position: absolute;
+        right: 30px;
+        top: 270px;
+        background-color: transparent;
+        border: none;
+    }
+
+    #next img {
+        width: 40px;
+    }
+
+
+
+
+    /*  ============================ DECK INFO =========================*/
+
+.container-deck-info {
+    height: 110px;
+}
+
 
 
     /*  ============================ MANA GRAPH =========================*/
@@ -80,7 +200,7 @@ body {
 
 .deck-wrapper {
     width: 450px;
-    margin: 50px 0 0 50px;
+    margin-top: 20px;
     min-height: 500px;
     background-color: wheat;
 }
@@ -111,7 +231,7 @@ body {
 
 
 html {
-  background: url("https://images2.alphacoders.com/159/159670.jpg") no-repeat center center fixed;
+  background: url("../images/Tavern_background.png") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -190,3 +310,4 @@ html {
 #checkboxes label:hover {
     background-color: #1e90ff;
 }
+
