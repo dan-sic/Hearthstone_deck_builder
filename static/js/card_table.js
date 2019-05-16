@@ -56,12 +56,12 @@ function selectSubSet(e){
 }
 
 function printCards(){
-    cards = filterCards();
+    let cards = filterCards();
     manipulateDom(cards);
 }
 
 function filterCards(){
-    cards = state.cards.filter(function(card) {
+    let cards = state.cards.filter(function(card) {
         return card.cardClass == state.subSet.toUpperCase();
     });
 
@@ -128,11 +128,13 @@ async function main(){
     let tab2 = document.getElementById('neutral');
     let nextBtn = document.getElementById('next');
     let previousBtn = document.getElementById('previous');
+    let filter = document.getElementById('filter');
 
     tab1.addEventListener('click', selectSubSet);
     tab2.addEventListener('click', selectSubSet);
     nextBtn.addEventListener('click', changePage);
     previousBtn.addEventListener('click', changePage);
+    filter.addEventListener('keyup', printCards);
 
     printCards();
 }
