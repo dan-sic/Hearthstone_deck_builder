@@ -1,0 +1,34 @@
+{% block contents %}
+
+    <div>
+        <div class="container">
+            <div class="icon-buttons-wrapper">
+                <div>
+                    <div id="{{ cardClass }}"><img src="/static/images/classes-sprites.png"></div>
+                    <button id="class" class="icon-button" name="{{ cardClass }}"> {{ cardClass }}</button>
+                </div>
+
+                <div>
+                   <div id="neutral2"><img src="/static/images/classes-sprites.png"></div>
+                   <button id="neutral" class="icon-button" name="neutral">Neutral</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="six_cards" class="container px-0 card_display_container">
+            <button id="previous" name="previous" data-js="page-btn"><img src="{{ url_for('static', filename="images/Arrow_head_left.png") }}" alt=""></button>
+            <button id="next" name="next" data-js="page-btn"><img src="{{ url_for('static', filename="images/Arrow_head_right.png") }}" alt=""></button>
+            <div class="row">
+                <div class="col-10 offset-1 px-0">
+                    <div class="container">
+                        <div class="row" id="cards"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="page-info">
+                <span id="page"></span> / <span id="maxPage"></span>
+            </div>
+
+        </div>
+    </div>
+{% endblock contents %}
