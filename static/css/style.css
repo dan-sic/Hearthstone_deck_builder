@@ -103,7 +103,27 @@ body {
   height: 32px;
   overflow: hidden;
   position: absolute;
+    margin-top: 1px;
+}
 
+.icon-button {
+    width: 100px;
+    text-align: right;
+    background-color: wheat;
+    padding: 2px 3px 0 0;
+    height: 33px;
+    border: 2px solid grey;
+    border-radius: 3px;
+    transition: all .2s;
+}
+
+.icon-button:hover {
+    background-color: sandybrown;
+}
+
+.icon-buttons-wrapper {
+    margin-left: 3px;
+    display: flex;
 }
 
 #Druid img{

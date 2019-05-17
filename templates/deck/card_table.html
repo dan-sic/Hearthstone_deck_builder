@@ -1,21 +1,16 @@
 {% block contents %}
 
     <div>
-{#        <div>#}
-{#            <button id="class" name="{{ cardClass }}">{{ cardClass }}</button>#}
-{#            <br>#}
-{#            <button id="neutral" name="neutral">Neutral</button>#}
-{#        </div>#}
         <div class="container">
-            <div class="row">
-                <div class="column">
-                    <div class="column" id="{{ cardClass }}"><img src="/static/images/classes-sprites.png"></div>
-                    <button id="class" name="{{ cardClass }}" style="width: 100px; text-align: right; background-color: #e1cebf"> {{ cardClass }}</button>
+            <div class="icon-buttons-wrapper">
+                <div>
+                    <div id="{{ cardClass }}"><img src="/static/images/classes-sprites.png"></div>
+                    <button id="class" class="icon-button" name="{{ cardClass }}"> {{ cardClass }}</button>
                 </div>
 
-                <div class="column-md-4">
-                   <div class="column" id="neutral2"><img src="/static/images/classes-sprites.png"></div>
-                   <button id="neutral" name="neutral" style="width: 100px; text-align: right; background-color: #e1cebf">Neutral</button>
+                <div>
+                   <div id="neutral2"><img src="/static/images/classes-sprites.png"></div>
+                   <button id="neutral" class="icon-button" name="neutral">Neutral</button>
                 </div>
             </div>
         </div>
