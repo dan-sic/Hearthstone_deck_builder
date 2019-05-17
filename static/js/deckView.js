@@ -25,6 +25,53 @@ function generateCardRow(cardData) {
     return cardRowHtml
 }
 
+function createCardElement(cardId) {
+
+    const imageContainer = document.createElement('div');
+    imageContainer.classList.add('card-wrapper');
+    imageContainer.classList.add('card-clone');
+    const cardImg = document.createElement('img');
+    cardImg.classList.add('fit-image');
+    cardImg.setAttribute('src', `https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png`);
+    cardImg.setAttribute('data-cardid', cardId);
+
+    imageContainer.insertAdjacentElement('beforeend', cardImg);
+
+    return imageContainer
+}
+
+function getElementCoordinates(elem) {
+  let box = elem.getBoundingClientRect();
+
+  return {
+    top: box.top + pageYOffset,
+    left: box.left + pageXOffset
+  };
+}
+
+export const animateAddingCard = (cardId, canAnimateCard) => {
+
+    if (!canAnimateCard) return;
+
+    const currentCard = document.querySelector(`.original-card[data-cardid="${cardId}"]`).parentElement;
+    const body = document.querySelector('body');
+    const cardClone = createCardElement(cardId);
+
+    const currentCardPageX = getElementCoordinates(currentCard).left;
+    const currentCardPageY = getElementCoordinates(currentCard).top;
+
+    cardClone.style.top = `${currentCardPageY}px`;
+    cardClone.style.left = `${currentCardPageX}px`;
+
+    body.insertAdjacentElement('afterbegin', cardClone);
+
+    cardClone.classList.add('card-animation');
+
+    setTimeout(() => {
+        body.removeChild(cardClone);
+    }, 1500);
+};
+
 export const showCardSnippet = () => {
     const target = event.target;
     const id = target.getAttribute('data-card-id');
