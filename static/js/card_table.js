@@ -1,6 +1,6 @@
 import DeckModel from './DeckModel.js';
 import { updateChartView } from './chartView.js';
-import { displayCurrentDeck, showCardSnippet, hideCardSnippet } from './deckView.js';
+import { displayCurrentDeck, showCardSnippet, hideCardSnippet, animateAddingCard } from './deckView.js';
 
 const state = {};
 let deckData;
@@ -47,7 +47,8 @@ function selectCardHandler(e) {
     if(isRightMouseClick) {
         deckData.removeCardFromDeck(cardId);
     } else {
-        deckData.addCardToDeck(cardId);
+        const result = deckData.addCardToDeck(cardId);
+        animateAddingCard(cardId, result);
     }
 
     const chartValues = deckData.deckManaChart;
@@ -160,9 +161,9 @@ function manipulateDom(cards){
         if(i<cardsPerPage) {
             const cardId = cards[i + state.pageNumber[set] * 6].id;
             card = `
-                <div class="col-md-4 col-sm-6">
+                <div class="col-md-4 col-sm-6" style="position: relative">
                     <div class="card-wrapper">
-                        <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image" ">
+                        <img src='https://art.hearthstonejson.com/v1/render/latest/enUS/256x/${cardId}.png' data-cardid=${cardId} class="fit-image original-card" ">
                     </div>
                </div>
             `;
